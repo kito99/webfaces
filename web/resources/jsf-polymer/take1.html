@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+<link rel="import" jsf:name="polymer.html" jsf:library="polymer">
+<dom-module id="contact-card">
+    <template>
+        <content></content>
+        <iron-icon icon="star" hidden$="{{!starred}}"></iron-icon>
+    </template>
+    <script>
+        Polymer({
+            is: 'contact-card',
+            properties: {
+                starred: Boolean
+            }
+        });
+    </script>
+</dom-module>
+</html>

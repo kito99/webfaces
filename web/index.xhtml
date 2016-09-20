@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:demo="http://java.sun.com/jsf/composite/webfaces-demo">
+
+<f:view transient="true"/>
+<h:head>
+    <h:outputScript name="webcomponents-lite.js" library="webcomponentsjs"/>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <!--<link rel="import" href="#{resource['jsf-polymer:take1.html']}"/>-->
+    <!--<link rel="import" href="contact-card.xhtml"></link>-->
+    <!--<link rel="import" href="#{resource['jsf-polymer:take1.html']}"/>-->
+</h:head>
+<h:body>
+    <!--<contact-card starred="false">-->
+        <!--My content-->
+    <!--</contact-card>-->
+    <!--<wc:contact-card starred="false">-->
+        <!--My content-->
+    <!--</wc:contact-card>-->
+    <!--<wc:contact-card starred="false">-->
+        <!--My content2-->
+    <!--</wc:contact-card>-->
+    <demo:hello-world message="JavaOne"/>
+    <demo:hello-world message="JavaOne again"/>
+    <!--<poly:contact-card2 starred="false">-->
+        <!--My content #2-->
+    <!--</poly:contact-card2>-->
+
+</h:body>
+
+
+
+</html>

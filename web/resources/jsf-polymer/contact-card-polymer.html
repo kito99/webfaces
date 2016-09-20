@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:cc="http://java.sun.com/jsf/composite"
+                xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <cc:interface name="ContactCard" shortDescription="Displays info about a person.">
+        <cc:attribute name="starred" type="boolean"/>
+    </cc:interface>
+    <cc:implementation>
+        <!--<h:head>-->
+        <!--&lt;!&ndash;<h:outputLink type="rel" target="head" href="}"></h:outputLink></h>outputLink&ndash;&gt;-->
+        <!--</h:head>-->
+        <!--<div id="#{cc.id}">-->
+        <!--<cc:insertChildren/>-->
+        <!--<input jsf:id="input" value="#{facesContext.application.projectStage}"/>-->
+        <!--<iron-icon icon="star"></iron-icon>-->
+        <!--</div>-->
+
+        <link rel="import"
+              href="#{facesContext.externalContext.requestContextPath}/resources/bower_components/polymer/polymer.html"/>
+        <link rel="import"
+              href="#{facesContext.externalContext.requestContextPath}/resources/bower_components/iron-icon/iron-icon.html"/>
+        <link rel="import"
+              href="#{facesContext.externalContext.requestContextPath}/resources/bower_components/iron-icons/iron-icons.html"/>
+
+        <dom-module id="contact-card">
+            <template>
+                <style>
+                    .gold {
+                        color: gold;
+                    }
+                </style>
+                <div>
+                    <content></content>
+                    <h:inputText value="#{facesContext.application.projectStage}"></h:inputText>
+                    <iron-icon id="icon" icon="star" on-tap="toggleGold"></iron-icon>
+                </div>
+            </template>
+        </dom-module>
+        <script>
+            Polymer({
+                is: 'contact-card',
+                properties: {
+                    starred: Boolean,
+                    gold: Boolean,
+                },
+                toggleGold: function(evt, detail) {
+                    this.gold = !this.gold;
+                    this.toggleClass('gold', this.gold, this.$.icon);
+                }
+            });
+        </script>
+    </cc:implementation>
+
+</ui:composition>

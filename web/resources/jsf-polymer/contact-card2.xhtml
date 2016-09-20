@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:cc="http://java.sun.com/jsf/composite"
+                xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <cc:interface name="ContactCard" shortDescription="Displays info about a person.">
+        <cc:attribute name="starred" type="boolean"/>
+    </cc:interface>
+    <cc:implementation>
+        <link rel="import"
+              href="#{facesContext.externalContext.requestContextPath}/resources/bower_components/polymer/polymer.html"/>
+        <link rel="import"
+              href="#{facesContext.externalContext.requestContextPath}/resources/bower_components/iron-icon/iron-icon.html"/>
+        <link rel="import"
+              href="#{facesContext.externalContext.requestContextPath}/resources/bower_components/iron-icons/iron-icons.html"/>
+
+        <template id="contact-card-template">
+            <style>
+                .gold {
+                    color: gold;
+                }
+            </style>
+            <div>
+                <h:inputText value="#{facesContext.application.projectStage}"></h:inputText>
+                <div id="test">test</div>
+                <iron-icon id="icon" icon="star" on-tap="toggleGold"></iron-icon>
+                <slot></slot>
+            </div>
+        </template>
+
+        <script>
+            class ContactCard extends HTMLElement {
+                constructor() {
+                    super();
+                    let template = document.querySelector('#contact-card-template').content.cloneNode(true);
+                    let root = this.attachShadow({ mode: 'open' });
+                    root.appendChild(template);
+                    root.querySelector('#test').addEventListener('click', () => { alert('hi')});
+                }
+
+                /** Fires when an instance was inserted into the document */
+                connectedCallback() {
+
+                };
+
+                /** Fires when an instance was removed from the document */
+                disconnectedCallback() {
+                    this.stop();
+                };
+
+                /** Fires when an attribute was added, removed, or updated */
+                attributeChangedCallback(attr, oldVal, newVal) {
+                    if (attr == "start") {
+                        this.count = Number(newVal);
+                    }
+                }
+
+                /** Fires when the element is moved to a new document */
+                adoptedCallback() {
+                    console.log("Someone adopted me!", this);
+                }
+            }
+            window.customElements.define('contact-card', ContactCard);
+        </script>
+
+        <contact-card starred="#{cc.attrs.starred}">
+            Inside of a composite component!
+            <cc:insertChildren/>
+        </contact-card>
+    </cc:implementation>
+
+</ui:composition>

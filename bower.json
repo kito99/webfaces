@@ -1,0 +1,7 @@
+{
+  "name": "webfaces",
+  "private": true,
+  "dependencies": {
+    "webcomponentsjs": "#v1"
+  }
+}

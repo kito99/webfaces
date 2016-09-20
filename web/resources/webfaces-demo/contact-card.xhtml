@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:cc="http://java.sun.com/jsf/composite"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:jsfwc="uri:jsf-webcomponents">
+
+    <cc:interface name="ContactCard" shortDescription="Displays info about a person.">
+        <cc:attribute name="starred" type="boolean"/>
+    </cc:interface>
+    <cc:implementation>
+        <jsfwc:template id="contact-card-template">
+            <style>
+                .gold {
+                    color: gold;
+                }
+            </style>
+            <div>
+                <h:inputText value="#{facesContext.application.projectStage}"></h:inputText>
+                <div id="test">test</div>
+                <iron-icon id="icon" icon="star" on-tap="toggleGold"></iron-icon>
+                <slot></slot>
+            </div>
+        </jsfwc:template>
+
+        <h:outputScript name="ContactCard.js" library="webfaces-demo"/>
+
+        <contact-card starred="#{cc.attrs.starred}">
+            Inside of a plain web components composite component!
+            <cc:insertChildren/>
+        </contact-card>
+    </cc:implementation>
+
+</ui:composition>
