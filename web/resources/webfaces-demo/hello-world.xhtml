@@ -10,7 +10,7 @@
     </cc:interface>
     <cc:implementation>
         <h:outputScript src="#{facesContext.externalContext.requestContextPath}/resources/bower_components/webcomponentsjs/webcomponents-lite.js" target="head"/>
-        <h:outputScript name="HelloWorld.js" library="webfaces-demo" target="head"/>
+        <h:outputScript name="HelloWorld.js" library="webfaces-demo" target="body"/>
 
         <wf:template id="hello-world-template">
             <div class="test">
