@@ -24,3 +24,6 @@ buildNumber.properties
 .mvn/timing.properties
 
 /web/resources/bower_components/
+.idea/
+out/
+*.iml
