@@ -16,12 +16,15 @@ import java.util.logging.Logger;
  * @author Kito D. Mann
  */
 @FacesComponent(tagName = "template", namespace = "uri:webfaces", createTag = true)
-public class Template extends UIComponentBase {
+public class Template extends RenderOnce {
 
     private static Logger logger = Logger.getLogger(Template.class.toString());
 
-    public static String COMPONENT_FAMILY = "jsfwc";
-    public static String MARKER_KEY = "jsfwc.template";
+    public static String COMPONENT_FAMILY = "org.webfaces";
+
+    public Template() {
+        this.setGroup("template");
+    }
 
     @Override
     public String getFamily() {
@@ -31,16 +34,6 @@ public class Template extends UIComponentBase {
     @Override
     public boolean getRendersChildren() {
         return true;
-    }
-
-    @Override
-    public void encodeAll(FacesContext context) throws IOException {
-        if (!hasBeenRendered()) {
-            logger.info("No marker found; rendering");
-            super.encodeAll(context);
-        } else {
-            logger.info("Marker found, rendering skipped");
-        }
     }
 
     @Override
@@ -67,16 +60,6 @@ public class Template extends UIComponentBase {
     }
 
     @Override
-    public void encodeChildren(FacesContext context) throws IOException {
-        if (!hasBeenRendered()) {
-            logger.info("No marker found; rendering");
-            super.encodeChildren(context);
-        } else {
-            logger.info("Marker found, rendering skipped");
-        }
-    }
-
-    @Override
     public void encodeEnd(FacesContext context) throws IOException {
         if (!hasBeenRendered()) {
             logger.info("No marker found; rendering");
@@ -88,28 +71,12 @@ public class Template extends UIComponentBase {
         }
     }
 
-    protected void markAsRendered() {
-        String id = this.getId();
-        Map<String, Object> viewMap = this.getFacesContext().getViewRoot().getViewMap();
-        List<String> renderedTemplateIds =
-                (List<String>) viewMap.get(MARKER_KEY);
-        if (renderedTemplateIds == null) {
-            renderedTemplateIds = new ArrayList<String>();
-            viewMap.put(MARKER_KEY, renderedTemplateIds);
-        }
-        if (!renderedTemplateIds.contains(id)) {
-            logger.info("Storing marker id " + id);
-            renderedTemplateIds.add(id);
-        }
+    protected String getMarkerKey() {
+        return "webfaces.template." + this.getGroup();
     }
 
-    protected boolean hasBeenRendered() {
-        String id = this.getId();
-        Map<String, Object> viewMap = this.getFacesContext().getViewRoot().getViewMap();
-        List<String> renderedTemplateIds =
-                (List<String>) viewMap.get(MARKER_KEY);
-        boolean found = renderedTemplateIds != null && renderedTemplateIds.contains(id);
-        logger.info("Looking for marker id " + id + ", found=" + found);
-        return found;
+    protected String getIdToRenderOnce() {
+        return this.getId();
     }
+
 }
