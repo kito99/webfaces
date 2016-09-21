@@ -43,15 +43,11 @@ public class Template extends RenderOnce {
             ResponseWriter writer = context.getResponseWriter();
             writer.startElement("template", this);
             writer.writeAttribute("id", this.getId(), "id");
-
-            //TOOD: Write out other attributes
-//        this.getAttributes().keySet().stream().forEach((attribute) -> {
-//                    if (attribute.equals("id")) {
-//                        writer.writeAttribute(attribute, this.getAttributes().get(attribute), null);
-//                    }
-//                }
-//        ));
-
+            for (String attribute : this.getAttributes().keySet()) {
+                if (!attribute.equals("id") && !attribute.startsWith("com.")) {
+                    writer.writeAttribute(attribute, this.getAttributes().get(attribute), null);
+                }
+            }
             super.encodeBegin(context);
 
         } else {
