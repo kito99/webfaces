@@ -30,7 +30,7 @@ public class ValueExpressionFilterResourceHandler extends ResourceHandlerWrapper
         // we currently also only filter .htm and .html files
         if (resource != null
                 && libraryName != null
-                && !libraryName.contains("faces")
+//                && !libraryName.contains("faces")
                 && (resourceName.endsWith(".htm") || resourceName.endsWith(".html"))) {
             return new ValueExpressionFilterResource(resource);
         } else {

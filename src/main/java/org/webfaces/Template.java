@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 /**
  * Created: 14 Sep 2016
  *
+ * TODO: Factor this out into a base class
  * @author Kito D. Mann
  */
 @FacesComponent(tagName = "template", namespace = "uri:webfaces", createTag = true)
@@ -41,7 +42,7 @@ public class Template extends RenderOnce {
         if (!hasBeenRendered()) {
             logger.info("No marker found; rendering");
             ResponseWriter writer = context.getResponseWriter();
-            writer.startElement("template", this);
+            writer.startElement(getElementName(), this);
             writer.writeAttribute("id", this.getId(), "id");
             for (String attribute : this.getAttributes().keySet()) {
                 if (!attribute.equals("id") && !attribute.startsWith("com.")) {
@@ -60,7 +61,7 @@ public class Template extends RenderOnce {
         if (!hasBeenRendered()) {
             logger.info("No marker found; rendering");
             super.encodeEnd(context);
-            context.getResponseWriter().endElement("template");
+            context.getResponseWriter().endElement(getElementName());
             markAsRendered();
         } else {
             logger.info("Marker found, rendering skipped");
@@ -73,6 +74,10 @@ public class Template extends RenderOnce {
 
     protected String getIdToRenderOnce() {
         return this.getId();
+    }
+
+    protected String getElementName() {
+        return "template";
     }
 
 }
