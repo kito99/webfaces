@@ -6,7 +6,9 @@ import javax.faces.application.ResourceHandlerWrapper;
 
 /**
  * Custom ResourceHandler to resolve EL expressions also in htm and html files.
- * This is currently only supported in the specs in css files.
+ * This is currently only supported in the spec in CSS files.
+ *
+ * @author Thomas Andraschko
  */
 public class ValueExpressionFilterResourceHandler extends ResourceHandlerWrapper {
     private ResourceHandler wrapped;

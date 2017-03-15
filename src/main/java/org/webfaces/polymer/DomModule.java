@@ -1,9 +1,11 @@
-package org.webfaces;
+package org.webfaces.polymer;
+
+import org.webfaces.Template;
 
 import javax.faces.component.FacesComponent;
 
 /**
- * Created: 21 Sep 2016
+ * JSF representation of the Polymer dom-module tag.
  *
  * @author Kito D. Mann
  */

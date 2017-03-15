@@ -1,16 +1,20 @@
 package org.webfaces.jsf;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PushbackInputStream;
-import java.util.ArrayList;
-import java.util.List;
 import javax.el.ELContext;
 import javax.el.ValueExpression;
 import javax.faces.application.Resource;
 import javax.faces.application.ResourceWrapper;
 import javax.faces.context.FacesContext;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PushbackInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * ResourceWrapper that parses EL expressions.
+ * @author Thomas Andraschko
+ */
 public class ValueExpressionFilterResource extends ResourceWrapper {
 
     private Resource resource;

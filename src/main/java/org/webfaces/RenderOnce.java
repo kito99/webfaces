@@ -3,7 +3,6 @@ package org.webfaces;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 /**
- * Created: 14 Sep 2016
+ * Represents a component that renders only one time, even if it's included several times in a page.
  *
  * @author Kito D. Mann
  */
